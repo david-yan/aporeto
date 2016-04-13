@@ -11,9 +11,8 @@ function printHelp() {
 
 #Check for no arguments
 if [ $# -eq 0 ]; then
-	echo "ERROR: Missing arguments or options"
 	printHelp
-	exit 1
+	exit 0
 fi
 
 if [[ $1 == --create-file=* ]]; then
