@@ -55,9 +55,6 @@ func ScrapeWords(url string, index int) {
     _, err = f.Write(data)
     check(err)
 	for word, count := range wordCount {
-		if strings.Contains("  "+word+": "+strconv.Itoa(count)+"\n", "note") {
-			fmt.Println(word+strconv.Itoa(count))
-		}
         data = []byte("  "+word+": "+strconv.Itoa(count)+"\n")
         _, err := f.Write(data)
         check(err)
