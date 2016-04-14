@@ -13,6 +13,6 @@
 
 ## Go sample:
 * `go get` may not work. Cannot seem to format file system correctly to make it work
-  * If `go get` does not work please download files and run `go install github.com/david-yan/aporeto_homework/gosample` and then `$GOPATH/bin/gosample ...`
+  * If `go get` does not work please download files and run `go install github.com/david-yan/aporeto_homework/gosample`, `export $GOPATH=<current directory>`, and then `$GOPATH/bin/gosample ...`
 * Also uses basic assumption that word count mapping can fit in memory for each url
 * Not parallelized solution
