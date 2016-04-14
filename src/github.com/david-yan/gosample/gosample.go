@@ -32,17 +32,19 @@ func ScrapeWords(url string, index int) {
 
 	doc.Find("html").Each(func(i int, s *goquery.Selection) {
 		text := s.Text()
-		words := strings.Split(text, " ")
-		for _, word := range words {
-				word = strings.Trim(word, "\n .,!?()<>;:'/")
-        		word = strings.ToLower(word)
+		pwords := strings.Split(text, " ")
+		for _, pword := range pwords {
+			words := strings.Split(pword, "\n")
+			for _, word := range words {
+				word = strings.ToLower(word)
 				if word != "" && !strings.ContainsAny(word, "',./?!<>{}[]|/\\\";:@#$`~©^&*()_·+-=%") {
-						if count, ok := wordCount[word]; ok {
-								wordCount[word] = count + 1;
-						} else {
-								wordCount[word] = 1;
-						}
+					if count, ok := wordCount[word]; ok {
+							wordCount[word] = count + 1;
+					} else {
+							wordCount[word] = 1;
+					}
 				}
+			}
 		}
 	})
 	f, err := os.Create("url"+strconv.Itoa(index + 1)+".txt")
@@ -53,6 +55,9 @@ func ScrapeWords(url string, index int) {
     _, err = f.Write(data)
     check(err)
 	for word, count := range wordCount {
+		if strings.Contains("  "+word+": "+strconv.Itoa(count)+"\n", "note") {
+			fmt.Println(word+strconv.Itoa(count))
+		}
         data = []byte("  "+word+": "+strconv.Itoa(count)+"\n")
         _, err := f.Write(data)
         check(err)
