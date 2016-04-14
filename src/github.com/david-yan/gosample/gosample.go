@@ -35,6 +35,7 @@ func ScrapeWords(url string, index int) {
 		words := strings.Split(text, " ")
 		for _, word := range words {
 				word = strings.Trim(word, "\n .,!?()<>;:'/")
+        		word = strings.ToLower(word)
 				if word != "" && !strings.ContainsAny(word, "',./?!<>{}[]|/\\\";:@#$`~©^&*()_·+-=%") {
 						if count, ok := wordCount[word]; ok {
 								wordCount[word] = count + 1;
@@ -52,7 +53,6 @@ func ScrapeWords(url string, index int) {
     _, err = f.Write(data)
     check(err)
 	for word, count := range wordCount {
-        word = strings.ToLower(word)
         data = []byte("  "+word+": "+strconv.Itoa(count)+"\n")
         _, err := f.Write(data)
         check(err)
