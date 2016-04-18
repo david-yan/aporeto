@@ -12,7 +12,8 @@
   * Possible optimization would be to store the lines in a HashSet instead of a list
 
 ## Go sample:
-* `go get` may not work. Cannot seem to format file system correctly to make it work
-  * If `go get` does not work please download files and run `export GOPATH=<aporeto_homework directory>`, (optional: `go install github.com/david-yan/gosample`), and then `$GOPATH/bin/gosample ...`
+* `go get` probably does not work because first time using Go
+  * Executable file comes precompiled in bin
+* Relies on goquery external package
 * Also uses basic assumption that word count mapping can fit in memory for each url
 * Not parallelized solution
